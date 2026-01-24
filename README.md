@@ -16,7 +16,6 @@ The aim of the project is to solve a real-world problem using technology and inn
 - GitHub repository setup
 - Basic project structure (frontend & backend folders)
 - Initial planning and architecture design
-- (Add anything small you have discussed or designed)
 
 ---
 
