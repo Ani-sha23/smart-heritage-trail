@@ -1,101 +1,59 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import { getCities, getSites } from "./api";
+<div className="container">
+  {/* HEADER */}
+  <div className="header">
+    <h1>Smart Heritage Trail</h1>
+    <p>Discover cultural heritage sites city-wise</p>
+  </div>
 
-function App() {
-  const state = "Madhya Pradesh";
+  {/* STATE INFO */}
+  <div className="state-box">
+    <span className="badge">📍 State</span>
+    <span className="state-name">Madhya Pradesh</span>
+  </div>
 
-  const [cities, setCities] = useState([]);
-  const [city, setCity] = useState("");
-  const [sites, setSites] = useState([]);
-  const [error, setError] = useState("");
+  {/* CONTROLS */}
+  <div className="controls">
+    <select value={city} onChange={(e) => setCity(e.target.value)}>
+      <option value="">🏙️ Select City</option>
+      {cities.map((c) => (
+        <option key={c} value={c}>{c}</option>
+      ))}
+    </select>
 
-  // Load cities on page load
-  useEffect(() => {
-    getCities(state)
-      .then((res) => {
-        setCities(res.data);
-        setError("");
-      })
-      .catch(() => {
-        setError("Failed to load cities");
-      });
-  }, []);
+    <button onClick={loadSites} disabled={!city}>
+      🚀 Generate Trail
+    </button>
+  </div>
 
-  // Load heritage sites
-  const loadSites = () => {
-    if (!city) return;
+  {/* ERROR */}
+  {error && <div className="error">⚠️ {error}</div>}
 
-    getSites(state, city)
-      .then((res) => {
-        setSites(res.data);
-        setError("");
-      })
-      .catch(() => {
-        setError("Failed to load heritage sites");
-        setSites([]);
-      });
-  };
+  {/* RESULTS */}
+  {sites.length > 0 && (
+    <>
+      <h2 className="section-title">🏛️ Heritage Sites</h2>
 
-  return (
-    <div className="container">
-      <h1>Smart Heritage Trail</h1>
-      <p className="subtitle">
-        Discover cultural heritage sites city-wise
-      </p>
+      <div className="sites-grid">
+        {sites.map((s, i) => (
+          <div key={i} className="site-card">
+            <div>
+              <h3>{s.name}</h3>
+              <p>{s.desc}</p>
+            </div>
 
-      <div className="state-line">
-        <span className="state-label">State:</span>
-        <span className="state-value">Madhya Pradesh</span>
+            <a
+              href={`https://www.google.com/maps/search/${encodeURIComponent(
+                s.name + " " + city + " Madhya Pradesh"
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+              className="map-link"
+            >
+              📍 Map
+            </a>
+          </div>
+        ))}
       </div>
-
-
-      <div className="form-group">
-        <select value={city} onChange={(e) => setCity(e.target.value)}>
-          <option value="">Select City</option>
-          {cities.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-
-        <button onClick={loadSites} disabled={!city}>
-          Generate Heritage Trail
-        </button>
-      </div>
-
-      {error && <div className="error">{error}</div>}
-
-      {sites.length > 0 && (
-        <div className="results">
-          <h2>Heritage Sites</h2>
-          <ul>
-            {sites.map((s, i) => (
-              <li key={i}>
-                <div>
-                  <b>{s.name}</b>
-                  <p style={{ margin: "5px 0", color: "#555" }}>
-                    {s.desc}
-                  </p>
-                </div>
-                <a
-                  href={`https://www.google.com/maps/search/${encodeURIComponent(
-                    s.name + " " + city + " " + state
-                  )}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="map-link"
-                >
-                  📍 Map
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default App;
+    </>
+  )}
+</div>
