@@ -39,15 +39,16 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Smart Heritage Trail – MP</h1>
+      <h1>Smart Heritage Trail</h1>
       <p className="subtitle">
         Discover cultural heritage sites city-wise
       </p>
 
-      <label>State:</label>
-      <p>
-        <b>{state}</b>
-      </p>
+      <div className="state-line">
+        <span className="state-label">State:</span>
+        <span className="state-value">Madhya Pradesh</span>
+      </div>
+
 
       <div className="form-group">
         <select value={city} onChange={(e) => setCity(e.target.value)}>

@@ -107,3 +107,19 @@ button:disabled {
   color: #2563eb;
   font-size: 0.9rem;
 }
+.state-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.state-label {
+  font-weight: 600;
+}
+
+.state-value {
+  font-weight: 500;
+  color: #333;
+}
