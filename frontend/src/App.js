@@ -1,67 +1,97 @@
 import React, { useEffect, useState } from "react";
+import "./App.css";
 import { getCities, getSites } from "./api";
 
 function App() {
-  const [state] = useState("Madhya Pradesh");
+  const state = "Madhya Pradesh";
+
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState("");
   const [sites, setSites] = useState([]);
+  const [error, setError] = useState("");
 
-  // Load cities when app loads
+  // Load cities on page load
   useEffect(() => {
     getCities(state)
       .then((res) => {
-        console.log("Cities:", res.data); // DEBUG
         setCities(res.data);
+        setError("");
       })
-      .catch((err) => console.error("City error:", err));
-  }, [state]);
+      .catch(() => {
+        setError("Failed to load cities");
+      });
+  }, []);
 
-  // Load sites when button clicked
+  // Load heritage sites
   const loadSites = () => {
-    if (!city) {
-      alert("Please select a city");
-      return;
-    }
+    if (!city) return;
 
     getSites(state, city)
-      .then((res) => setSites(res.data))
-      .catch((err) => console.error("Sites error:", err));
+      .then((res) => {
+        setSites(res.data);
+        setError("");
+      })
+      .catch(() => {
+        setError("Failed to load heritage sites");
+        setSites([]);
+      });
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="container">
       <h1>Smart Heritage Trail – MP</h1>
+      <p className="subtitle">
+        Discover cultural heritage sites city-wise
+      </p>
 
-      <p><b>State:</b> {state}</p>
+      <label>State:</label>
+      <p>
+        <b>{state}</b>
+      </p>
 
-      <label>
-        <b>City:</b>{" "}
+      <div className="form-group">
         <select value={city} onChange={(e) => setCity(e.target.value)}>
           <option value="">Select City</option>
-          {cities.map((c, i) => (
-            <option key={i} value={c}>
+          {cities.map((c) => (
+            <option key={c} value={c}>
               {c}
             </option>
           ))}
         </select>
-      </label>
 
-      <br /><br />
+        <button onClick={loadSites} disabled={!city}>
+          Generate Heritage Trail
+        </button>
+      </div>
 
-      <button onClick={loadSites}>Generate Heritage Trail</button>
-
-      <br /><br />
+      {error && <div className="error">{error}</div>}
 
       {sites.length > 0 && (
-        <>
-          <h3>Heritage Sites</h3>
+        <div className="results">
+          <h2>Heritage Sites</h2>
           <ul>
             {sites.map((s, i) => (
-              <li key={i}>{s}</li>
+              <li key={i}>
+                <div>
+                  <b>{s.name}</b>
+                  <p style={{ margin: "5px 0", color: "#555" }}>
+                    {s.desc}
+                  </p>
+                </div>
+                <a
+                  href={`https://www.google.com/maps/search/${encodeURIComponent(
+                    s.name + " " + city + " " + state
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="map-link"
+                >
+                  📍 Map
+                </a>
+              </li>
             ))}
           </ul>
-        </>
+        </div>
       )}
     </div>
   );

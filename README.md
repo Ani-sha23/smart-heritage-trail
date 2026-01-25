@@ -1,25 +1,33 @@
-# Smart Heritage Trail
+# 🏛️ Smart Heritage Trail – MP
 
-A full-stack web application that helps users explore heritage sites
-based on state and city selection.
+A full-stack web application to explore cultural heritage sites of Madhya Pradesh city-wise.
 
-## Tech Stack
-- Frontend: React.js
+---
+
+## ✨ Features
+- City-wise heritage trail generator
+- Google Maps integration
+- Responsive modern UI
+- FastAPI backend + React frontend
+- Error handling & loading states
+
+---
+
+## 🛠️ Tech Stack
+- Frontend: React, CSS
 - Backend: FastAPI (Python)
-- API Communication: Axios
+- API calls: Axios
 
-## Features
-- Select state and city
-- Fetch heritage sites dynamically
-- REST API powered backend
-- Simple and clean UI
+---
 
-## API Endpoints
+## 📡 API Endpoints
 - GET /states
 - GET /cities/{state}
 - GET /sites/{state}/{city}
 
-## How to Run the Project
+---
+
+## ▶️ How to Run
 
 ### Backend
 ```bash
