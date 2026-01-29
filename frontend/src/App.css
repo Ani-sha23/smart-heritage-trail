@@ -1,161 +1,47 @@
 body {
   margin: 0;
-  background: linear-gradient(120deg, #fdfbfb, #ebedee);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
 }
 
-/* MAIN CONTAINER */
 .container {
-  max-width: 900px;
-  margin: 50px auto;
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-/* HEADER */
-.header {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
   text-align: center;
-  margin-bottom: 30px;
 }
 
-.header h1 {
-  font-size: 42px;
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.header p {
-  color: #666;
-  font-size: 18px;
-  margin-top: 8px;
-}
-
-/* STATE */
-.state-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-.badge {
-  background: #ffe8cc;
-  color: #ff7a00;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.state-name {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* CONTROLS */
-.controls {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
+h1 {
+  color: #2c3e50;
 }
 
 select {
-  flex: 1;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.heritage-list {
+  list-style: none;
+  padding: 0;
+}
+
+.heritage-list li {
+  background: white;
+  margin: 10px 0;
   padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-}
-
-button {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
-}
-
-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-/* SECTION TITLE */
-.section-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-/* GRID */
-.sites-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-/* CARD */
-.site-card {
-  background: #f9fafb;
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.site-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-}
-
-.site-card h3 {
-  margin: 0 0 6px;
-  font-size: 18px;
-}
-
-.site-card p {
-  margin: 0;
-  color: #555;
+.heritage-list a {
+  text-decoration: none;
+  color: #007bff;
   font-size: 14px;
 }
 
-/* MAP LINK */
-.map-link {
-  text-decoration: none;
-  font-weight: bold;
-  color: #2563eb;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* ERROR */
 .error {
-  background: #fee2e2;
-  color: #b91c1c;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .controls {
-    flex-direction: column;
-  }
-
-  .header h1 {
-    font-size: 32px;
-  }
+  color: red;
 }
